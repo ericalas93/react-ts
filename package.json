@@ -6,7 +6,9 @@
   "scripts": {
     "build": "webpack --config ./webpack/webpack.prod.js",
     "start": "webpack serve --config ./webpack/webpack.dev.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cross-env NODE_ENV=test && jest --watch -maxWorkers=4",
+    "test:all": "cross-env NODE_ENV=test && jest",
+    "test:debug": "cross-env NODE_ENV=test && node --inspect-brk ./node_modules/.bin/jest -i --watch -maxWorkers=4"
   },
   "keywords": [],
   "author": "",
@@ -15,13 +17,27 @@
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
     "@babel/preset-react": "^7.12.7",
+    "@types/enzyme": "^3.10.8",
+    "@types/jest": "^26.0.15",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.9.0",
+    "@typescript-eslint/parser": "^4.9.0",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.3.2",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
+    "enzyme": "^3.11.0",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
+    "jest": "^26.6.3",
+    "prettier": "2.2.1",
+    "react-test-renderer": "^17.0.1",
     "terser-webpack-plugin": "^5.0.3",
+    "ts-jest": "^26.4.4",
     "typescript": "^4.1.2",
     "webpack": "^5.9.0",
     "webpack-cli": "^4.2.0",
@@ -32,5 +48,24 @@
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "moduleNameMapper": {
+      "\\.(properties)$": "<rootDir>/tests/__mocks__/propertiesMock.js",
+      "\\.(css|less)$": "<rootDir>/tests/__mocks__/stylesMock.js",
+      "^ui-module/(.*)": "<rootDir>/src/modules/$1"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setupTests.ts"
+    ]
   }
 }
