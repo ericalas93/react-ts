@@ -15,7 +15,7 @@ const App: React.FunctionComponent<IAppProps> = (_props) => {
         return message;
     }
 
-    return <h2>{displayCount(`Count: ${count}`)}</h2>;
+    return <h2>{displayCount(`Counta: ${count}`)}</h2>;
 };
 
 export default App;

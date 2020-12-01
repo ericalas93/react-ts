@@ -24,8 +24,8 @@ module.exports = (env) => {
                 },
                 {
                     test: /\.(ts|tsx)?$/,
+                    exclude: [/node_modules/, /tests/, /cypress/],
                     loader: "awesome-typescript-loader",
-                    exclude: /node_modules/,
                 },
                 {
                     test: /\.(woff|eot|ttf|gif|png|jpe?g|svg)$/i,
