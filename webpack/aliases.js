@@ -8,4 +8,5 @@ const PATHS = require("./paths");
  */
 module.exports = Object.assign({
     "ui-module": path.resolve(PATHS.UI_ROOT, "modules"),
+    types: path.resolve(PATHS.UI_ROOT, "types", "types.ts"),
 });

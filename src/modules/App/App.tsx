@@ -1,21 +1,22 @@
 import React from "react";
+import AsyncTodo from "ui-module/todo/components/AsyncTodo";
+import { EViews } from "./app.models";
 
-interface IAppProps {}
+interface IAppProps {
+    viewSelected?: EViews;
+}
 
-const App: React.FunctionComponent<IAppProps> = (_props) => {
-    const [count, setCount] = React.useState<number>(0);
-    React.useEffect(() => {
-        const interval = setInterval(() => {
-            setCount((count) => count + 1);
-        }, 500);
-        return () => clearInterval(interval);
-    }, []);
+const App: React.FunctionComponent<IAppProps> = (props) => {
+    return (
+        <div>
+            {props.viewSelected === EViews.empty && <span>Welcome, User!</span>}
+            {props.viewSelected === EViews.todos && <AsyncTodo />}
+        </div>
+    );
+};
 
-    function displayCount(message: string): string {
-        return message;
-    }
-
-    return <h2>{displayCount(`Counta: ${count}`)}</h2>;
+App.defaultProps = {
+    viewSelected: EViews.todos,
 };
 
 export default App;
